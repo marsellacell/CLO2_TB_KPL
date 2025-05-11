@@ -148,7 +148,7 @@ function updateMoodChart(data) {
       labels: labels,
       datasets: [
         {
-          label: "Mood Over Time",
+        label: "Mood Over Time",
           data: moodData,
           fill: false,
           borderColor: "#6200ea",
@@ -297,4 +297,3 @@ document.querySelectorAll(".mood-button").forEach((button) => {
     logMood(mood);
   });
 });
-
