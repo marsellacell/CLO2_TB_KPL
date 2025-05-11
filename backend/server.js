@@ -53,3 +53,38 @@ app.post('/api/logs', (req, res) => {
     res.json({ id: result.insertId, mood, date });
   });
 });
+
+// Update mood
+app.put('/api/logs/:id', (req, res) => {
+  const { id } = req.params;
+  const { mood } = req.body;
+  const query = 'UPDATE moods SET mood = ? WHERE id = ?';
+  db.query(query, [mood, id], (err, result) => {
+    if (err) {
+      return res.status(500).send('Error updating mood');
+    }
+    res.send('Mood updated');
+  });
+});
+
+// Delete mood
+app.delete('/api/logs/:id', (req, res) => {
+  const { id } = req.params;
+  const query = 'DELETE FROM moods WHERE id = ?';
+  db.query(query, [id], (err, result) => {
+    if (err) {
+      return res.status(500).send('Error deleting mood');
+    }
+    res.send('Mood deleted');
+  });
+});
+
+//Buat baca index
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
