@@ -297,4 +297,3 @@ document.querySelectorAll(".mood-button").forEach((button) => {
     logMood(mood);
   });
 });
-
